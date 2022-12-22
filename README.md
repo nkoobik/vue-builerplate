@@ -1,2 +1,6 @@
 # vue-builerplate
-Vue Simple Boilerplate
+Simple boilerplate for Vue projects.
+
+Features:
+
+Libraries:
