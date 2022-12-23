@@ -1,5 +1,7 @@
+// @TODO: test on tasker
+
 import axios from 'axios';
-import { API_ROUTES } from 'lib/system/apiRoutes';
+import { API_ROUTES } from 'lib/system/api/apiRoutes';
 
 export async function requestApiGet({ route, getParams, errorCallback }) {
   try {

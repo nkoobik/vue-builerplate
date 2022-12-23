@@ -3,39 +3,39 @@ const URL_PATTERN = /^([a-zа-я\d](-*[a-zа-я\d])*)(\.([a-zа-я\d](-*[a-zа-�
 const FULL_URL_PATTERN = /^((http|https):\/\/)[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/;
 
 // Types
-export function isUndefined(val) {
+function isUndefined(val) {
   return val === undefined;
 }
 
-export function isNull(val) {
+function isNull(val) {
   return val === null;
 }
 
-export function isNan(val) {
+function isNan(val) {
   return Number.isNaN(val);
 }
 
-export function isNumber(val) {
+function isNumber(val) {
   return typeof val === 'number' && !Number.isNaN(val) && isFinite(val);
 }
 
-export function isBoolean(val) {
+function isBoolean(val) {
   return typeof val === 'boolean';
 }
 
-export function isString(val) {
+function isString(val) {
   return typeof val === 'string';
 }
 
-export function isArray(val) {
+function isArray(val) {
   return Array.isArray(val);
 }
 
-export function isFunction(val) {
+function isFunction(val) {
   return typeof val === 'function';
 }
 
-export function isObject(val) {
+function isObject(val) {
   return !isNull(val) &&
     !isUndefined(val) &&
     !isString(val) &&
@@ -46,39 +46,39 @@ export function isObject(val) {
 }
 
 // Types with empty values
-export function isEmptyString(val) {
+function isEmptyString(val) {
   return isString(val) && val.length === 0;
 }
 
-export function isNotEmptyString(val) {
+function isNotEmptyString(val) {
   return isString(val) && val.length > 0;
 }
 
-export function isEmptyArray(val) {
+function isEmptyArray(val) {
   return isArray(val) && val.length === 0;
 }
 
-export function isNotEmptyArray(val) {
+function isNotEmptyArray(val) {
   return isArray(val) && val.length > 0;
 }
 
-export function isEmptyObject(val) {
+function isEmptyObject(val) {
   return isObject(val) && Object.keys(val).length === 0;
 }
 
-export function isNotEmptyObject(val) {
+function isNotEmptyObject(val) {
   return isObject(val) && Object.keys(val).length > 0;
 }
 
 // Complex values
-export function isEmpty(val) {
+function isEmpty(val) {
   return isEmptyString(val)
     || isNan(val)
     || isEmptyArray(val)
     || isEmptyObject(val);
 }
 
-export function isNotEmpty(val) {
+function isNotEmpty(val) {
   return !isNull(val) && !isUndefined(val) && !isEmpty(val);
 }
 
@@ -133,11 +133,11 @@ function isObjectWithSubField(object, fieldMap) {
     });
 }
 
-export function isStringIncludingSubstring(val, substring) {
+function isStringIncludingSubstring(val, substring) {
   return val.indexOf(substring) !== -1;
 }
 
-export function isStringNotIncludingSubstring(val, substring) {
+function isStringNotIncludingSubstring(val, substring) {
   return !isStringIncludingSubstring(val, substring);
 }
 
