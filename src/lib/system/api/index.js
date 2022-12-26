@@ -1,7 +1,7 @@
-// @TODO: test on tasker
-
 import axios from 'axios';
 import { API_ROUTES } from 'lib/system/api/apiRoutes';
+
+import validate from 'lib/utils/validate';
 
 export async function requestApiGet({ route, getParams, errorCallback }) {
   try {
@@ -16,7 +16,7 @@ export async function requestApiGetUnique({ uniqueKey, route, getParams, errorCa
   storeRequest(uniqueKey);
 
   try {
-    return await axios.get(API_ROUTES[route], { params: getParams, signal: getRequest(uniqueKey) });
+    return await axios.get(API_ROUTES[route], { params: getParams, signal: getSignal(uniqueKey) });
   } catch (error) {
     errorCallback(error);
   }
@@ -32,10 +32,10 @@ export async function requestApiPost({ route, getParams, postBody, errorCallback
 
 export async function requestApiPostUnique({ uniqueKey, route, getParams, postBody, errorCallback }) {
   killRequest(uniqueKey);
-  storeRequest(uniqueKey);
 
   try {
-    return await axios.post(API_ROUTES[route], postBody, { params: getParams, signal: getRequest(uniqueKey) });;
+    storeRequest(uniqueKey);
+    return await axios.post(API_ROUTES[route], postBody, { params: getParams, signal: getSignal(uniqueKey) });;
   } catch (error) {
     errorCallback(error);
   }
@@ -45,11 +45,15 @@ function storeRequest(key) {
   ACTIVE_REQUESTS[key] = new AbortController();
 }
 
-function getRequest(key) {
-  return ACTIVE_REQUESTS[key];
+function getSignal(key) {
+  return ACTIVE_REQUESTS[key].signal;
 }
 
 function killRequest(key) {
+  if (validate.isUndefined(ACTIVE_REQUESTS[key])) {
+    return;
+  }
+
   ACTIVE_REQUESTS[key].abort();
   delete ACTIVE_REQUESTS[key];
 }
