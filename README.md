@@ -2,17 +2,15 @@
 Simple boilerplate for Vue projects.
 
 ## Features:
+* webpack-dev-server
 * Api core `src/lib/system/api`
-
 * Example structure
-
 * Simple plugins
   * **date plugin** to work with dates, based on `lib/utils/date`
   * **validate plugin** to handle type errors, based on `lib/utils/validate`
   * **translate plugin** to display all the phrases and create a system of translation, based on `lib/utils/translate`
     * Use translate func and $t plugin to output all phrases.
     * For creating a translation system, simply fill out the `translate` function with the necessary functionality.
-    
 * Utils (fill this files with necessary functions)
   * `array`
   * `cookie`
